@@ -25,6 +25,16 @@ def dev_guide(request):
     """
     return render_mako_context(request, '/home_application/dev_guide.html')
 
+def test(request):
+    """
+    开发指引
+    """
+    data = {
+        'data1': 11,
+        'data2': 22,
+    }
+    return render_mako_context(request, '/home_application/test.html', {'data': data})
+
 
 def contactus(request):
     """
