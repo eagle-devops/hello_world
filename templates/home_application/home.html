@@ -30,6 +30,12 @@
     <script src="http://magicbox.bk.tencent.com/static_api/analysis.js"></script>
     <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
     <!--[if lt IE 9]><script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/html5shiv.min.js"></script><script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/respond.min.js"></script><![endif]-->
+    <script>
+        var site_url = '${SITE_URL}';
+        var static_url = '${STATIC_URL}';
+    </script>
+    <script src="${STATIC_URL}js/setting.js"></script>
+    <script src="${STATIC_URL}js/task.js"></script>
 </head>
 
 <body class="bg-white" data-bg-color="bg-white">
@@ -69,24 +75,13 @@
                             </div>
                             <div class="king-panel8-content pt25">
                                 <form class="form-horizontal">
-                                    <div class="form-group clearfix ">
-                                        <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                    </div>
-                                    <div class="form-group clearfix ">
-                                        <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                    </div>
-                                    <div class="form-group clearfix ">
-                                        <label class="col-sm-3 control-label bk-lh30 pt0">参数：</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control bk-valign-top" id="" placeholder="提示信息"> </div>
-                                    </div>
+                                    <%namespace name="tags_cc" module="tags.cc"/>
+                                    ${tags_cc.business_ip_select()}
+                                    <%namespace name="tags_ijobs" module="tags.ijobs" />
+                                    ${tags_ijobs.business_job_select()}
                                     <div class="form-group clearfix">
                                         <div class="col-sm-9 col-sm-offset-3">
-                                            <button type="button" class="king-btn mr10  king-success">提交</button>
+                                            <button type="button" class="king-btn mr10  king-success" onclick="execute_tast(list)">提交</button>
                                             <button type="button" class="king-btn king-default ">取消</button>
                                         </div>
                                     </div>
@@ -99,7 +94,7 @@
                             <div class="king-panel8-header">
                                 <h3 class="king-panel8-title king-info">执行流程</h3>
                             </div>
-                            <div class="king-panel8-content pt25">
+                            <div class="king-panel8-content pt25" id="task_flow">
                                 <ul class="king-timeline-simple  ">
                                     <li class="info">
                                         <div class=""> blue king 给你发了一封邮件
